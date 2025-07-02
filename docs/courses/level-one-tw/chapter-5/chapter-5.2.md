@@ -17,6 +17,17 @@ contentType: tutorial
 
 [[ workflowDemo("file:////courses/level-one/chapter-5/chapter-5.2.json") ]]
 
+## 資料插入流程
+
+```mermaid
+flowchart LR
+    A["HTTP Request 節點<br/>獲取資料"] --> B["Airtable 節點<br/>插入資料"]
+    B --> C["Airtable 表格<br/>儲存記錄"]
+    
+    D["資料倉儲 API"] -.->|"30 筆訂單資料"| A
+    C -.->|"orders 表格"| E["包含所有欄位的記錄"]
+```
+
 ## 設定您的表格
 
 如果我們要將資料插入 Airtable，我們首先需要在那裡設定一個表格。要做到這一點：
@@ -75,6 +86,20 @@ contentType: tutorial
 - **基地**：您可以從列表中選擇您的基地（例如，初學者課程）。
 - **表格**：orders。
 - **映射欄位模式**：自動映射。在此模式下，傳入的資料欄位必須與 Airtable 中的欄位相同。
+
+### Airtable 節點設定步驟
+
+```mermaid
+flowchart TD
+    A["新增 Airtable 節點"] --> B["建立新憑證"]
+    B --> C["設定存取權杖"]
+    C --> D["選擇資源：記錄"]
+    D --> E["選擇操作：建立"]
+    E --> F["選擇基地"]
+    F --> G["選擇表格：orders"]
+    G --> H["設定映射模式：自動映射"]
+    H --> I["執行步驟"]
+```
 
 ## 測試 Airtable 節點
 

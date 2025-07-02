@@ -39,6 +39,27 @@ contentType: overview
 - 一個兩節點的工作流程，從 Hacker News 獲取文章
 - 一個七節點的工作流程，幫助您的客戶從資料倉儲獲取記錄、過濾它們、進行計算，並通知團隊成員有關結果
 
+### 課程架構總覽
+
+```mermaid
+flowchart TD
+    A["第一章：瀏覽編輯器 UI"] --> B["第二章：建構迷你工作流程"]
+    B --> C["第三章：自動化用例"]
+    C --> D["第四章：設計工作流程"]
+    D --> E["第五章：實作工作流程"]
+    E --> F["第六章：匯出和匯入"]
+    F --> G["第七章：測試知識"]
+    
+    E --> E1["步驟 1：使用 HTTP 節點"]
+    E --> E2["步驟 2：使用 Filter 節點"]
+    E --> E3["步驟 3：使用 Set 節點"]
+    E --> E4["步驟 4：使用 Switch 節點"]
+    E --> E5["步驟 5：使用 Aggregate 節點"]
+    E --> E6["步驟 6：使用憑證"]
+    E --> E7["步驟 7：使用 Schedule Trigger"]
+    E --> E8["步驟 8：測試工作流程"]
+```
+
 ## 開始前我需要什麼？
 
 1. **n8n 設定**：您可以使用 [n8n Cloud](/manage-cloud/overview.md)（或者如果您有託管服務的經驗，可以使用[自託管版本](/hosting/installation/docker.md)）。
@@ -56,6 +77,17 @@ contentType: overview
 
 - [x] 建構[主要工作流程](/courses/level-one/chapter-5/chapter-5.1.md)
 - [x] 在課程結束時通過[測驗](https://n8n-community.typeform.com/to/JMoBXeGA)
+
+```mermaid
+flowchart LR
+    A["開始課程"] --> B["學習基礎概念"]
+    B --> C["建構主要工作流程"]
+    C --> D{"通過測驗？"}
+    D -->|"是"| E["獲得徽章和頭像"]
+    D -->|"否"| F["複習內容"]
+    F --> D
+    E --> G["完成課程"]
+```
 
 /// note | 檢查您的進度
 您可以隨時在整個課程中透過在[這裡](https://internal.users.n8n.cloud/webhook/course-level-1/verify)輸入您的唯一 ID 來**檢查您的進度**。

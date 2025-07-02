@@ -15,6 +15,18 @@ contentType: tutorial
 
 在開始以下步驟之前，請使用上面的連結連接到 Discord 上的 n8n 伺服器。確保您可以存取 `#course-level-1` 頻道。
 
+```mermaid
+flowchart LR
+    A["Code 節點<br/>計算結果"] --> B["Discord 節點<br/>建構訊息"]
+    B --> C["使用表達式<br/>插入資料"]
+    C --> D["透過 Webhook<br/>傳送訊息"]
+    D --> E["Discord 頻道<br/>#course-level-1"]
+    
+    F["totalBooked: 16"] -.->|"資料"| C
+    G["bookedSum: 總金額"] -.->|"資料"| C
+    H["Unique ID"] -.->|"資料"| C
+```
+
 /// note | 通訊應用程式節點
 您可以用另一個通訊應用程式替換 Discord 節點。例如，n8n 也有 [Slack](/integrations/builtin/app-nodes/n8n-nodes-base.slack.md) 和 [Mattermost](/integrations/builtin/app-nodes/n8n-nodes-base.mattermost.md) 的節點。
 ///
@@ -36,6 +48,20 @@ contentType: tutorial
 		```
 		This week we've {{$json["totalBooked"]}} booked orders with a total value of {{$json["bookedSum"]}}. My Unique ID: {{ $('HTTP Request').params["headerParameters"]["parameters"][0]["value"] }}
 		```
+
+### Discord 節點設定步驟
+
+```mermaid
+flowchart TD
+    A["新增 Discord 節點"] --> B["選擇連接類型：Webhook"]
+    B --> C["建立新憑證"]
+    C --> D["貼上 Webhook URL"]
+    D --> E["選擇操作：傳送訊息"]
+    E --> F["設定訊息欄位為表達式"]
+    F --> G["插入表達式模板"]
+    G --> H["執行步驟"]
+    H --> I["訊息發送到 Discord"]
+```
 
 現在在 Discord 節點中選擇**執行步驟**。如果一切正常，您應該在 n8n 中看到此輸出：
 

@@ -15,6 +15,18 @@ contentType: tutorial
 
 為了實現這一點，我們將移除我們開始時的 Manual Trigger 節點，並用 Schedule Trigger 節點替換它。
 
+```mermaid
+flowchart TD
+    A["手動觸發<br/>Manual Trigger"] -->|"替換"| B["排程觸發<br/>Schedule Trigger"]
+    B --> C["設定觸發條件"]
+    C --> C1["間隔：每週"]
+    C --> C2["日期：星期一"]
+    C --> C3["時間：早上 9 點"]
+    C3 --> D["自動執行工作流程"]
+    D --> E["獲取銷售資料"]
+    E --> F["處理並通知"]
+```
+
 ## 移除 Manual Trigger 節點
 
 首先，讓我們移除 Manual Trigger 節點：
@@ -36,6 +48,19 @@ contentType: tutorial
 - **在工作日觸發**：選擇**星期一**（如果預設新增了**星期日**，請移除它）。
 - **觸發小時**：選擇 **9am**。
 - **觸發分鐘**：輸入 `0`。
+
+### Schedule Trigger 設定流程
+
+```mermaid
+flowchart TD
+    A["新增 Schedule Trigger 節點"] --> B["設定觸發間隔：週"]
+    B --> C["設定週數：1"]
+    C --> D["選擇工作日：星期一"]
+    D --> E["設定觸發小時：9am"]
+    E --> F["設定觸發分鐘：0"]
+    F --> G["連接到 HTTP Request 節點"]
+    G --> H["工作流程準備就緒"]
+```
 
 您的 Schedule Trigger 節點應該如下所示：
 

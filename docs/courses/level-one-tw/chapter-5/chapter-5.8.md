@@ -13,6 +13,18 @@ contentType: tutorial
 
 要啟用您的工作流程，將編輯器 UI 頂部導覽中的**非活動**切換設為**已啟用**。Nathan 的工作流程現在將在每個星期一上午 9 點自動執行：
 
+```mermaid
+flowchart LR
+    A["工作流程建立完成"] --> B["預設狀態：非活動"]
+    B --> C["切換狀態開關"]
+    C --> D["狀態：已啟用"]
+    D --> E["等待觸發條件"]
+    E --> F{"星期一早上 9 點？"}
+    F -->|"是"| G["自動執行工作流程"]
+    F -->|"否"| E
+    G --> H["記錄執行結果"]
+```
+
 <figure><img src="/_images/courses/level-one/chapter-five/l1-c5-5-8-activated-workflow.png" alt="已啟用的工作流程" style="width:100%"><figcaption align = "center"><i>已啟用的工作流程</i></figcaption></figure>
 
 ## 工作流程執行
@@ -36,6 +48,31 @@ contentType: tutorial
 您可以按工作流程和狀態（**任何狀態**、**失敗**、**已取消**、**執行中**、**成功**或**等待中**）過濾顯示的**執行**。
 此處顯示的資訊取決於您在[**工作流程設定**](/workflows/settings.md)中配置要儲存的執行。
 ///
+
+### 工作流程執行狀態
+
+```mermaid
+flowchart TD
+    A["工作流程開始執行"] --> B{"執行狀態"}
+    B --> C["等待中"]
+    B --> D["執行中"]
+    B --> E["成功"]
+    B --> F["失敗"]
+    B --> G["已取消"]
+    
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+    
+    E --> H["記錄執行資料"]
+    F --> I["記錄錯誤訊息"]
+    G --> J["記錄取消原因"]
+    
+    H --> K["顯示在執行列表"]
+    I --> K
+    J --> K
+```
 
 
 ## 工作流程設定

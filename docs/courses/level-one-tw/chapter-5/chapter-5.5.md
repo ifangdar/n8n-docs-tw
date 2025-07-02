@@ -18,6 +18,17 @@ Nathan 工作流程的下一步是從已預訂訂單計算兩個值：
 
 要計算資料並為您的工作流程新增更多功能，您可以使用 Code 節點，它讓您可以編寫自定義 JavaScript 程式碼。
 
+```mermaid
+flowchart TD
+    A["If 節點<br/>False 分支<br/>16 筆已預訂訂單"] --> B["Code 節點<br/>JavaScript 計算"]
+    B --> C["計算總數量"]
+    B --> D["計算總金額"]
+    C --> E["totalBooked: 16"]
+    D --> F["bookedSum: 總價值"]
+    E --> G["輸出結果物件"]
+    F --> G
+```
+
 ## 關於 Code 節點
 
 /// warning | Code 節點模式
@@ -60,6 +71,28 @@ Code 節點有兩種操作**模式**，取決於您想要如何處理項目：
 5. （選用）如果可能應該設定。
 6. （選用）如果可能應該設定。
 7. （選用）如果可能應該設定。
+
+### n8n 資料結構概覽
+
+```mermaid
+flowchart TD
+    A["n8n 資料結構<br/>陣列"] --> B["項目 1"]
+    A --> C["項目 2"]
+    A --> D["...更多項目"]
+    
+    B --> B1["json 物件<br/>（必需）"]
+    B --> B2["binary 物件<br/>（選用）"]
+    
+    B1 --> B1a["實際資料欄位"]
+    B1a --> B1a1["orderID"]
+    B1a --> B1a2["orderPrice"]
+    B1a --> B1a3["orderStatus"]
+    
+    B2 --> B2a["二進位檔案資料"]
+    B2a --> B2a1["data: Base64"]
+    B2a --> B2a2["mimeType"]
+    B2a --> B2a3["fileName"]
+```
 
 您可以在 [n8n 資料結構](/data/data-structure.md)頁面上了解更多關於預期格式的資訊。
 

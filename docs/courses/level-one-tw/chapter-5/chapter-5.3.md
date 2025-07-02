@@ -17,6 +17,13 @@ contentType: tutorial
 
 這個 if-then-else 命令是條件邏輯。在 n8n 工作流程中，您可以使用 [If 節點](/integrations/builtin/core-nodes/n8n-nodes-base.if.md)新增條件邏輯，它根據比較操作有條件地分割工作流程。
 
+```mermaid
+flowchart TD
+    A["HTTP Request<br/>30 筆訂單"] --> B{"If 節點<br/>orderStatus = 'processing'?"}
+    B -->|"True<br/>14 筆訂單"| C["插入 Airtable"]
+    B -->|"False<br/>16 筆訂單"| D["計算總額"]
+```
+
 /// note | If 與 Switch
 如果您需要根據多於布林值（true 和 false）來過濾資料，請使用 [Switch 節點](/integrations/builtin/core-nodes/n8n-nodes-base.switch.md)。Switch 節點類似於 If 節點，但支援多個輸出連接器。
 ///
@@ -58,6 +65,22 @@ contentType: tutorial
 /// warning | 資料類型
 選擇**操作**時，請確保選擇正確的資料類型（boolean、date & time、number 或 string）。
 ///
+
+### If 節點設定流程
+
+```mermaid
+flowchart TD
+    A["新增 If 節點"] --> B["設定 value1"]
+    B --> B1["開啟表達式編輯器"]
+    B1 --> B2["選擇 HTTP Request > orderStatus"]
+    B2 --> B3["產生表達式：$json.orderStatus"]
+    B3 --> C["設定操作：String > is equal to"]
+    C --> D["設定 value2：processing"]
+    D --> E["執行步驟"]
+    E --> F{"條件判斷"}
+    F -->|"符合條件"| G["True 分支"]
+    F -->|"不符合條件"| H["False 分支"]
+```
 
 選擇**執行步驟**來測試 If 節點。
 

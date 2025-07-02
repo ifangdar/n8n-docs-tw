@@ -16,6 +16,16 @@ contentType: tutorial
 5. 將處理中訂單的詳細資訊插入 Airtable 以供後續跟進
 6. 安排此工作流程在每個星期一早上執行
 
+```mermaid
+flowchart TD
+    A["排程觸發器<br/>每週一早上"] --> B["從資料倉儲<br/>獲取訂單資料"]
+    B --> C{"按訂單狀態<br/>過濾"}
+    C -->|"已預訂"| D["計算總價值"]
+    C -->|"處理中"| E["格式化資料"]
+    D --> F["發送到 Discord"]
+    E --> G["插入 Airtable"]
+```
+
 Nathan 的工作流程涉及將資料從公司的資料倉儲傳送到兩個外部服務：
 
 - Discord
@@ -37,6 +47,18 @@ n8n 為所有這些步驟提供整合，因此 Nathan 在 n8n 中的工作流程
 6. [通知團隊](/courses/level-one/chapter-5/chapter-5.6.md)
 7. [排程工作流程](/courses/level-one/chapter-5/chapter-5.7.md)
 8. [啟用和檢查工作流程](/courses/level-one/chapter-5/chapter-5.8.md)
+
+```mermaid
+flowchart LR
+    A["步驟 1<br/>HTTP 節點"] --> B["步驟 2<br/>Airtable 節點"]
+    B --> C["步驟 3<br/>Filter 節點"]
+    C --> D["步驟 4<br/>Set 節點"]
+    C --> E["步驟 5<br/>Aggregate 節點"]
+    D --> F["步驟 6<br/>Discord 節點"]
+    E --> F
+    G["步驟 7<br/>Schedule Trigger"] --> A
+    F --> H["步驟 8<br/>測試與啟用"]
+```
 
 要建構此工作流程，您將需要在註冊本課程時從 n8n 收到的電子郵件中找到的憑證。如果您尚未註冊，可以在[這裡](https://n8n-community.typeform.com/to/PDEMrevI?typeform-source=127.0.0.1){:target="_blank" .external-link}註冊。如果您在註冊後沒有收到確認電子郵件，請[聯絡我們](mailto:help@n8n.io)。
 
